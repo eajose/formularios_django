@@ -1,10 +1,10 @@
-# Formularios Django
+# Formulários Django
 
 Código utilizado em treinamento de equipe para mostrar o básico da utilização dos forms do django.
 
 Crie uma env com virtualenv e ative.
 
-Dar um comando:
+Dê um comando:
 ```
 $ pip install -r requirements.txt
 ```
