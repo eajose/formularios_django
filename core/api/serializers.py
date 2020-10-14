@@ -1,26 +1,29 @@
 from rest_framework import serializers
 
-from core.models import Pessoa, Endereco
+from core.models import Endereco, Pessoa
 
 
 class EnderecoSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Endereco
-        fields = "__all__"
+        exclude = [
+            'id',
+            'pessoa'
+        ]
 
 
 class PessoaSerializer(serializers.ModelSerializer):
-
-    endereco = EnderecoSerializer(
+    enderecos = EnderecoSerializer(
         read_only=True,
-        source="pessoa_set"
+        many=True
     )
-    
+
     class Meta:
         model = Pessoa
-        fields = "__all__"
-
-
-
+        fields = [
+            'nome',
+            'cpf',
+            'salario',
+            'enderecos',
+        ]
 

@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 from rest_framework import routers
-
 from core.api.viewsets import PessoaViewSet
 
 
@@ -27,5 +26,5 @@ router.register(r'pessoas', PessoaViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
-    path('api/pessoas/', include(router.urls)),
+    path('api/', include(router.urls)),
 ]
