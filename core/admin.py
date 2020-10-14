@@ -1,3 +1,12 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Pessoa, Endereco
+
+
+class EnderecoInLine(admin.TabularInline):
+    model = Endereco
+
+
+@admin.register(Pessoa)
+class PessoaAdmin(admin.ModelAdmin):
+    inlines = [EnderecoInLine]

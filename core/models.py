@@ -4,7 +4,7 @@ from django.db import models
 # Create your models here.
 class Pessoa(models.Model):
     nome = models.CharField(max_length=250)
-    cpf = models.CharField(max_length=14)
+    cpf = models.CharField(unique=True, max_length=14)
     salario = models.DecimalField(max_digits=5, decimal_places=2)
 
     class Meta:
@@ -16,13 +16,19 @@ class Pessoa(models.Model):
 
 
 class Endereco(models.Model):
-    pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
-    telefone = models.CharField(max_length=45)
-    endereco_completo = models.TextField()
+    logradouro = models.CharField(max_length=200)
+    numero = models.IntegerField()
+    bairro = models.CharField(max_length=200)
+    cidade = models.CharField(max_length=200)
+    estado = models.CharField(max_length=200)
+    pessoa = models.ForeignKey(
+        Pessoa,
+        on_delete=models.CASCADE,
+        related_name='enderecos'
+    )
 
     class Meta:
-        verbose_name = 'Endereco'
-        verbose_name_plural = 'Enderecos'
+        verbose_name = 'Endereço'
 
     def __str__(self):
         return self.pessoa.nome
