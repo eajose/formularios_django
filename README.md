@@ -1,6 +1,6 @@
 # Formulários Django
 
-Código utilizado em treinamento de equipe para mostrar o básico da utilização dos forms do django.
+Código utilizado em treinamento de equipe para mostrar o básico da utilização dos forms do django e api rest.
 
 Para rodar o projeto:
 ```
