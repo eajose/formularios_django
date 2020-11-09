@@ -9,13 +9,6 @@ from .models import Pessoa, Endereco
 
 
 class PessoaForm(forms.ModelForm):
-    user = forms.ModelChoiceField(
-        queryset=User.objects.all(),
-        required=False,
-        label="Usuario Atual",
-        widget=forms.RadioSelect(),
-    )
-    texto = forms.CharField(max_length=50, required=False)
 
     class Meta:
         model = Pessoa
