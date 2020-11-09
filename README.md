@@ -2,17 +2,11 @@
 
 Código utilizado em treinamento de equipe para mostrar o básico da utilização dos forms do django.
 
-Crie uma env com virtualenv e ative.
-
-Dê um comando:
+Para rodar o projeto:
 ```
-$ pip install -r requirements.txt
+$ docker-compose up
 ```
-Rode as migrações:
+Para executar os testes:
 ```
-$ python manage.py migrate
-```
-Execute o projeto:
-```
-$ python manage.py runserver
+$ docker-compose exec web python manage.py test
 ```
