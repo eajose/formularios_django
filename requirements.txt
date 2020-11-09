@@ -7,4 +7,5 @@ pytz==2020.1
 sqlparse==0.4.0
 validate-docbr==1.7.0
 djangorestframework==3.12.1
+psycopg2-binary>=2.8
 
