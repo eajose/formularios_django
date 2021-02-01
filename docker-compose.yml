@@ -1,19 +1,42 @@
-version: "3.3"
+version: "3"
    
 services:
   db:
-    image: postgres
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-  web:
-    build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    container_name: postgres
+    image: postgres:latest
     volumes:
-      - .:/code
+      - postgis-data:/var/lib/postgresql/data
     ports:
-      - "8000:8000"
+      - 5432:5432
+    env_file:
+      - .env
+
+  backend:
+    build: ./backend
+    container_name: backend
+    restart: always
+    ports:
+      - 8000:8000
+    volumes:
+      - ./backend:/app
     depends_on:
       - db
+    env_file:
+      - .env
+    command: bash -c "python manage.py migrate --noinput && python manage.py runserver 0.0.0.0:8000"
 
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    env_file:
+      - .env
+    command: npm start
+
+volumes:
+  postgis-data:
